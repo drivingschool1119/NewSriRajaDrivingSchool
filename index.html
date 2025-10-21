@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Sri Raja Driving School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f172a;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    /* Language Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      backdrop-filter: blur(5px);
+    }
+    .popup-content {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 450px;
+    }
+    .popup-content h2 {
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #1e3a8a, #dc2626);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 24px;
+    }
+    .popup-content p {
+      color: #475569;
+      margin-bottom: 20px;
+    }
+    .popup-content button {
+      margin: 8px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .popup-content button:hover {
+      transform: scale(1.08);
+    }
+    .btn-en {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+    }
+    .btn-te {
+      background: linear-gradient(135deg, #dc2626, #f59e0b);
+      color: white;
+    }
+    .btn-skip {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+    nav .logo {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f59e0b, #dc2626);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hero */
+    header {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #dc2626 100%);
+      overflow: hidden;
+      text-align: center;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.1;
+      background-image: 
+        radial-gradient(circle at 20% 50%, #f59e0b 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, #3b82f6 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      margin-bottom: 40px;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b, #dc2626);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-3px);
+    }
+
+    .btn-view-courses {
+      background: rgba(51, 181, 229, 0.9);
+      border-color: rgba(51, 181, 229, 1);
+    }
+
+    .btn-view-courses:hover {
+      background: rgba(51, 181, 229, 1);
+    }
+
+    .btn-student-portal {
+      background: rgba(76, 175, 80, 0.9);
+      border-color: rgba(76, 175, 80, 1);
+    }
+
+    .btn-student-portal:hover {
+      background: rgba(76, 175, 80, 1);
+    }
+
+    .btn-admin {
+      background: rgba(156, 39, 176, 0.9);
+      border-color: rgba(156, 39, 176, 1);
+    }
+
+    .btn-admin:hover {
+      background: rgba(156, 39, 176, 1);
+    }
+
+    .alert-banner {
+      background: rgba(220, 38, 38, 0.9);
+      padding: 15px 30px;
+      border-radius: 12px;
+      display: inline-block;
+      animation: pulse 2s infinite;
+      border: 2px solid #f87171;
+    }
+
+    .alert-banner span {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Sections */
+    .section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 60px 40px;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #1e3a8a, #dc2626);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #64748b;
+      font-size: 18px;
+      margin-bottom: 50px;
+      font-weight: 500;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .stat-card {
+      padding: 40px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      border-color: #3b82f6;
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .stat-number {
+      font-size: 56px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: #64748b;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      padding: 35px;
+      background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+      border-radius: 16px;
+      text-align: center;
+      border-left: 6px solid #f59e0b;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(245, 158, 11, 0.2);
+      border-left-color: #dc2626;
+    }
+
+    .feature-icon {
+      font-size: 56px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      color: #1e3a8a;
+      margin-bottom: 12px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Table */
+    .timings-wrapper {
+      overflow-x: auto;
+      margin-top: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    th {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      color: white;
+      padding: 20px;
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    td {
+      padding: 18px;
+      text-align: center;
+      font-weight: 500;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #f0f9ff;
+    }
+
+    .closed-text {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* Classes */
+    .classes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .class-card {
+      padding: 35px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-radius: 16px;
+      border-left: 6px solid #1e3a8a;
+      transition: all 0.3s;
+    }
+
+    .class-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(30, 58, 138, 0.2);
+    }
+
+    .class-card h3 {
+      color: #1e3a8a;
+      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .class-card p {
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .note-box {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 25px;
+      border-left: 6px solid #f59e0b;
+      border-radius: 12px;
+      margin-top: 30px;
+    }
+
+    .note-box strong {
+      color: #92400e;
+    }
+
+    .note-box ul {
+      margin-top: 15px;
+      list-style: none;
+      line-height: 1.9;
+    }
+
+    .note-box ul li:before {
+      content: "✓ ";
+      color: #f59e0b;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .testimonial {
+      padding: 30px;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-radius: 16px;
+      border-left: 6px solid #059669;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(5, 150, 105, 0.2);
+    }
+
+    .testimonial:before {
+      content: '"';
+      font-size: 60px;
+      color: #10b981;
+      opacity: 0.2;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+
+    .testimonial p {
+      color: #047857;
+      font-style: italic;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 15px;
+      color: #059669;
+      font-style: normal;
+      text-align: right;
+      font-weight: 700;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .contact-item {
+      padding: 35px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-radius: 16px;
+      text-align: center;
+      border-top: 4px solid #3b82f6;
+      transition: all 0.3s;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .contact-icon {
+      font-size: 44px;
+      margin-bottom: 15px;
+    }
+
+    .contact-item strong {
+      color: #1e3a8a;
+      font-size: 18px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .contact-item a {
+      color: #1e3a8a;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s;
+      display: block;
+      margin: 8px 0;
+    }
+
+    .contact-item a:hover {
+      color: #f59e0b;
+      transform: scale(1.05);
+    }
+
+    .contact-item p {
+      color: #64748b;
+      line-height: 1.8;
+    }
+
+    /* Resources */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .resource-card {
+      padding: 35px;
+      background: linear-gradient(135deg, #fae8ff 0%, #f3e8ff 100%);
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-10px);
+      border-color: #a855f7;
+      box-shadow: 0 15px 40px rgba(168, 85, 247, 0.2);
+    }
+
+    .resource-card-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .resource-card a {
+      color: #7c3aed;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 20px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .resource-card a:hover {
+      color: #a855f7;
+    }
+
+    .resource-card p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    footer p:first-child {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        min-height: 55vh;
+        padding: 30px 15px;
+      }
+      
+      header h1 { 
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        margin-bottom: 15px;
+      }
+      
+      header p { 
+        font-size: clamp(0.9rem, 3vw, 1.2rem);
+        margin-bottom: 25px;
+      }
+      
+      .cta-buttons {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .btn { 
+        padding: 10px 16px; 
+        font-size: 13px;
+      }
+      
+      .alert-banner {
+        padding: 10px 15px;
+      }
+      
+      .alert-banner span {
+        font-size: 13px;
+      }
+      
+      .section { 
+        margin: 25px 10px; 
+        padding: 40px 20px; 
+      }
+      
+      .section h2 { 
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+      }
+      
+      .section-subtitle {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      
+      .stats { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+      }
+      
+      .stat-card {
+        padding: 25px;
+      }
+      
+      .stat-number { 
+        font-size: 40px; 
+      }
+      
+      .stat-label {
+        font-size: 13px;
+      }
+      
+      .features { 
+        grid-template-columns: 1fr; 
+        gap: 15px;
+      }
+      
+      .feature-card {
+        padding: 25px;
+        border-left: 4px solid #f59e0b;
+      }
+      
+      .feature-icon {
+        font-size: 40px;
+      }
+      
+      .feature-card h3 {
+        font-size: 18px;
+      }
+      
+      .feature-card p {
+        font-size: 14px;
+      }
+      
+      th, td { 
+        padding: 12px 8px; 
+        font-size: 13px;
+      }
+      
+      th {
+        font-size: 14px;
+      }
+      
+      .classes-list { 
+        grid-template-columns: 1fr; 
+        gap: 15px;
+      }
+      
+      .class-card {
+        padding: 25px;
+      }
+      
+      .class-card h3 {
+        font-size: 20px;
+      }
+      
+      .class-card p {
+        font-size: 14px;
+      }
+      
+      .note-box {
+        padding: 15px;
+        font-size: 13px;
+      }
+      
+      .note-box ul li {
+        margin: 5px 0;
+      }
+      
+      .testimonials { 
+        grid-template-columns: 1fr; 
+        gap: 15px;
+      }
+      
+      .testimonial {
+        padding: 20px;
+      }
+      
+      .testimonial:before {
+        font-size: 40px;
+      }
+      
+      .contact-grid { 
+        grid-template-columns: 1fr; 
+        gap: 15px;
+      }
+      
+      .contact-item {
+        padding: 25px;
+      }
+      
+      .contact-icon {
+        font-size: 36px;
+      }
+      
+      .contact-item strong {
+        font-size: 16px;
+      }
+      
+      .contact-item a {
+        font-size: 14px;
+      }
+      
+      .resources-grid { 
+        grid-template-columns: 1fr; 
+        gap: 15px;
+      }
+      
+      .resource-card {
+        padding: 25px;
+      }
+      
+      .resource-card-icon {
+        font-size: 40px;
+      }
+      
+      .resource-card a {
+        font-size: 18px;
+      }
+      
+      .resource-card p {
+        font-size: 13px;
+      }
+      
+      footer {
+        padding: 25px 15px;
+      }
+      
+      footer p {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        min-height: 50vh;
+        padding: 25px 10px;
+      }
+      
+      header h1 { 
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      
+      header p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+      
+      .cta-buttons { 
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+      
+      .btn { 
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+      
+      .alert-banner {
+        padding: 8px 12px;
+        margin-top: 10px;
+      }
+      
+      .alert-banner span {
+        font-size: 12px;
+        white-space: normal;
+      }
+      
+      .section {
+        margin: 20px 5px;
+        padding: 30px 15px;
+      }
+      
+      .section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+      }
+      
+      .section-subtitle {
+        font-size: 14px;
+        margin-bottom: 25px;
+      }
+      
+      .stats { 
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      .stat-card {
+        padding: 20px;
+      }
+      
+      .stat-number {
+        font-size: 36px;
+      }
+      
+      .stat-label {
+        font-size: 12px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+      
+      .feature-card {
+        padding: 20px;
+      }
+      
+      .feature-icon {
+        font-size: 36px;
+      }
+      
+      .feature-card h3 {
+        font-size: 16px;
+      }
+      
+      .feature-card p {
+        font-size: 13px;
+      }
+      
+      table {
+        font-size: 12px;
+      }
+      
+      th, td {
+        padding: 10px 5px;
+      }
+      
+      .class-card {
+        padding: 20px;
+      }
+      
+      .class-card h3 {
+        font-size: 18px;
+      }
+      
+      .class-card p {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      
+      .note-box {
+        padding: 12px;
+        font-size: 12px;
+      }
+      
+      .note-box ul li {
+        margin: 3px 0;
+      }
+      
+      .testimonial {
+        padding: 18px;
+      }
+      
+      .testimonial p {
+        font-size: 13px;
+      }
+      
+      .testimonial:before {
+        font-size: 35px;
+        left: 10px;
+      }
+      
+      .contact-item {
+        padding: 20px;
+      }
+      
+      .contact-icon {
+        font-size: 32px;
+      }
+      
+      .contact-item strong {
+        font-size: 15px;
+      }
+      
+      .contact-item a {
+        font-size: 13px;
+      }
+      
+      .contact-item p {
+        font-size: 12px;
+      }
+      
+      .resource-card {
+        padding: 20px;
+      }
+      
+      .resource-card-icon {
+        font-size: 36px;
+      }
+      
+      .resource-card a {
+        font-size: 16px;
+      }
+      
+      .resource-card p {
+        font-size: 12px;
+      }
+      
+      footer {
+        padding: 20px 10px;
+      }
+      
+      footer p {
+        font-size: 11px;
+        margin: 3px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language Popup -->
+  <div id="languagePopup" class="popup" aria-hidden="false">
+    <div class="popup-content" role="dialog" aria-labelledby="langTitle">
+      <h2 id="langTitle" data-en="Select Language" data-te="భాషను ఎంచుకోండి">Select Language</h2>
+      <p data-en="Choose your preferred language to view the site." data-te="సైట్‌ను వీక్షించడానికి మీ ఇష్టం ఉన్న భాషను ఎంచుకోండి">Choose your preferred language to view the site.</p>
+      <div>
+        <button class="btn-en" onclick="setLanguage('en')" aria-label="English">English</button>
+        <button class="btn-te" onclick="setLanguage('te')" aria-label="Telugu">తెలుగు</button>
+      </div>
+      <div style="margin-top:12px;">
+        <button class="btn-skip" onclick="skipPopup()" data-en="Skip (show English)" data-te="ఉపేక్షించండి (ఇంగ్లీష్ చూపించు)">Skip (show English)</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Hero -->
+  <header>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 data-en="New Sri Raja Driving School" data-te="న్యూ శ్రీ రాజా డ్రైవింగ్ స్కూల్">New Sri Raja Driving School</h1>
+      <p data-en="Master the Road with Confidence & Safety" data-te="ఆత్మవిశ్వాసం మరియు భద్రతతో రోడ్డు మీద ప్రావీణ్యం పొందండి">Master the Road with Confidence & Safety</p>
+      <div class="cta-buttons">
+        <a href="tel:+919494331119" class="btn btn-primary" data-en="📞 Call Now" data-te="📞 ఇప్పుడే  కాల్ చేయండి">📞 Call Now</a>
+        <a href="#classes" class="btn btn-secondary btn-view-courses" data-en="View Courses" data-te="కోర్సులు చూడండి">View Courses</a>
+        <a href="student-portal.html" target="_blank" class="btn btn-secondary btn-student-portal" data-en="Student Portal" data-te="విద్యార్థి పోర్టల్">Student Portal</a>
+        <a href="enroll.html" target="_blank" class="btn btn-secondary" data-en="Enroll New Student" data-te="కొత్త విద్యార్థి నమోదు" style="background: #059669; color: white;">🧾 Enroll New Student</a>
+        <a href="admin.html" target="_blank" class="btn btn-secondary btn-admin" data-en="Admin Login" data-te="అడ్మిన్ లాగిన్">🔑 Admin Login</a>
+      </div>
+      <div class="alert-banner">
+        <span data-en="🚨 ALERT TODAY, ALIVE TOMORROW 🚨" data-te="🚨 ఈరోజు జాగ్రత్తగా ఉంటే, రేపు సురక్షితంగా ఉంటారు 🚨">🚨 ALERT TODAY, ALIVE TOMORROW 🚨</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">30+</div>
+        <div class="stat-label" data-en="Years Experience" data-te="సంవత్సరాల అనుభవం">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">200</div>
+        <div class="stat-label" data-en="KM Training" data-te="కిమీ శిక్షణ">KM Training</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label" data-en="License Support" data-te="లైసెన్స్ సహాయం">License Support</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15000+</div>
+        <div class="stat-label" data-en="Happy Students" data-te="సంతోషించిన విద్యార్థులు">Happy Students</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section">
+    <h2 data-en="About Us" data-te="మా గురించి">About Us</h2>
+    <p class="section-subtitle" data-en="Building Safe & Confident Drivers" data-te="సురక్షితమైన మరియు ఆత్మవిశ్వాసంతో కూడిన డ్రైవర్లను నిర్మించడం">Building Safe & Confident Drivers</p>
+    <p style="text-align: center; line-height: 1.9; font-size: 17px; color: #475569; margin-top: 30px;"
+       data-en="We care deeply about every student's success. Our mission is to create safe, knowledgeable, and confident drivers who make Vizianagaram roads safer for everyone."
+       data-te="మేము ప్రతి విద్యార్థి యొక్క విజయం గురించి లోతుగా జాగ్రత్త వహిస్తాము. మా లక్ష్యం సురక్షితమైన, జ్ఞానవంతులైన మరియు ఆత్మవిశ్వాసంతో కూడిన డ్రైవర్లను సృష్టించడం.">
+      We care deeply about every student's success. Our mission is to create safe, knowledgeable, and confident drivers who make Vizianagaram roads safer for everyone.
+    </p>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <h2 data-en="Why Choose Us" data-te="మమ్మల్ని ఎందుకు ఎంచుకోవాలి">Why Choose Us</h2>
+    <p class="section-subtitle" data-en="What Makes Us Different" data-te="మమ్మల్ని ప్రత్యేకంగా చేసేది">What Makes Us Different</p>
+    <div class="features">
+      <div class="feature-card">
+        <span class="feature-icon">👨‍🏫</span>
+        <h3 data-en="Expert Instructor" data-te="నైపుణ్య శిక్షకుడు">Expert Instructor</h3>
+        <p data-en="Learn from Ganesh sir with 30+ years of professional driving instruction experience"
+           data-te="గణేష్ సర్ నుండి 30+ సంవత్సరాల పేషাదారీ డ్రైవింగ్ బోధన అనుభవంతో నేర్చుకోండి">Learn from Ganesh sir with 30+ years of professional driving instruction experience</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🛣️</span>
+        <h3 data-en="Real Traffic Training" data-te="నిజమైన ట్రాఫిక్ శిక్షణ">Real Traffic Training</h3>
+        <p data-en="Practical on-road sessions in actual traffic conditions for real-world confidence"
+           data-te="వాస్తవ ట్రాఫిక్ పరిస్థితులలో ఆన్-రోడ్ సెషన్లు">Practical on-road sessions in actual traffic conditions for real-world confidence</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📋</span>
+        <h3 data-en="Complete License Support" data-te="పూర్తి లైసెన్స్ సహాయం">Complete License Support</h3>
+        <p data-en="Full assistance for learner's and permanent license processes"
+           data-te="లెర్నర్ మరియు పర్మనెంట్ లైసెన్స్ కోసం పూర్తి సహాయం">Full assistance for learner's and permanent license processes</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⏰</span>
+        <h3 data-en="Flexible Timings" data-te="అనుకూల సమయాలు">Flexible Timings</h3>
+        <p data-en="Morning and afternoon batches to fit your schedule perfectly"
+           data-te="ఉదయం మరియు మధ్యాహ్న బ్యాచ్‌లు మీ షెడ్యూల్‌కు సరిపోవటానికి">Morning and afternoon batches to fit your schedule perfectly</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h3 data-en="Patient Teaching" data-te="ధైర్యవంతమైన బోధన">Patient Teaching</h3>
+        <p data-en="Clear explanations with patience - perfect for absolute beginners"
+           data-te="ధైర్యంతో స్పష్టమైన వివరణలు - పూర్తిగా నতুన వారికి">Clear explanations with patience - perfect for absolute beginners</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✅</span>
+        <h3 data-en="200 KM Training" data-te="200 కిమీ శిక్షణ">200 KM Training</h3>
+        <p data-en="Comprehensive training covering 200 kilometers of practice"
+           data-te="200 కిలోమీటర్ల ప్రాక్టీస్‌ను కవర్ చే సమగ్ర శిక్షణ">Comprehensive training covering 200 kilometers of practice</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timings -->
+  <section class="section">
+    <h2 data-en="Timings & Schedule" data-te="సమయాలు & షెడ్యూల్">Timings & Schedule</h2>
+    <p class="section-subtitle" data-en="Choose a batch that works for you" data-te="మీకు సరిపోయే బ్యాచ్‌ను ఎంచుకోండి">Choose a batch that works for you</p>
+    <div class="timings-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Day" data-te="రోజు">Day</th>
+            <th data-en="Morning Batch" data-te="ఉదయం బ్యాచ్">Morning Batch</th>
+            <th data-en="Afternoon Batch" data-te="మధ్యాహ్నం బ్యాచ్">Afternoon Batch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong data-en="Monday - Saturday" data-te="సోమ - శని">Monday - Saturday</strong></td>
+            <td data-en="6:00 AM - 12:00 PM" data-te="6:00 AM - 12:00 PM">6:00 AM - 12:00 PM</td>
+            <td data-en="1:00 PM - 6:00 PM" data-te="1:00 PM - 6:00 PM">1:00 PM - 6:00 PM</td>
+          </tr>
+          <tr>
+            <td><strong data-en="Sunday" data-te="ఆదివారం">Sunday</strong></td>
+            <td colspan="2" class="closed-text" data-en="CLOSED" data-te="సెలవు">CLOSED</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Classes -->
+  <section id="classes" class="section">
+    <h2 data-en="Training Programs" data-te="శిక్షణ కార్యక్రమాలు">Training Programs</h2>
+    <p class="section-subtitle" data-en="Flexible learning designed for your pace" data-te="మీ వేగానికి సరిపోయే అనుకూల శిక్షణ">Flexible learning designed for your pace</p>
+    <div class="classes-list">
+      <div class="class-card">
+        <h3 data-en="🚗 Standard Course" data-te="🚗 స్టాండర్డ్ కోర్స్">🚗 Standard Course</h3>
+        <p><strong data-en="20 Classes in 20 Days" data-te="20 క్లాసులు 20 రోజుల్లో">20 Classes in 20 Days</strong></p>
+        <p data-en="Each session: 30 minutes" data-te="ప్రతి సెషన్: 30 నిమిషాలు">Each session: 30 minutes</p>
+        <p data-en="Perfect for steady learners who want to build skills gradually with daily practice."
+           data-te="రోజు ప్రాక్టీస్ ద్వారా స్థిరంగా నైపుణ్యాన్ని పెంచుకోవాలనుకునే వారికి పర్ఫెక్ట్.">Perfect for steady learners who want to build skills gradually with daily practice.</p>
+      </div>
+      <div class="class-card">
+        <h3 data-en="🚙 Fast Track Course" data-te="🚙 ఫాస్ట్ ట్రాక్ కోర్స్">🚙 Fast Track Course</h3>
+        <p><strong data-en="20 Classes in 10 Days" data-te="20 క్లాసులు 10 రోజుల్లో">20 Classes in 10 Days</strong></p>
+        <p data-en="Each session: 1 hour" data-te="ప్రతి సెషన్: 1 గంట">Each session: 1 hour</p>
+        <p data-en="Ideal for quick learners or those who need to complete training faster."
+           data-te="త్వరకు నేర్చుకునే వ్యక్తులకు లేదా శిక్షణను త్వరగా పూర్తిచేయాల్సిన వారికి తగినది.">Ideal for quick learners or those who need to complete training faster.</p>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong data-en="📌 Important Notes:" data-te="📌 ముఖ్య సూచనలు:">📌 Important Notes:</strong>
+      <ul>
+        <li data-en="Total training covers 200 kilometers" data-te="మొత్తం శిక్షణ 200 కిలోమీటర్ల వరకు ఉంటుంది">Total training covers 200 kilometers</li>
+        <li data-en="Students must come to school - no home pickups available" data-te="విద్యార్థులు స్కూల్‌కు రావాలి - హోమ్ పికప్‌లు లేవు">Students must come to school - no home pickups available</li>
+        <li data-en="Distance calculated from school to school only" data-te="దూరం స్కూల్ నుండి స్కూల్ వరకు మాత్రమే">Distance calculated from school to school only</li>
+        <li data-en="Both courses cover same comprehensive curriculum" data-te="రెండు కోర్సులు ఒకే సమగ్ర పాఠ్యక్రమాన్ని కవర్ చేస్తాయి">Both courses cover same comprehensive curriculum</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <h2 data-en="Student Success Stories" data-te="విద్యార్థుల విజయ కథలు">Student Success Stories</h2>
+    <p class="section-subtitle" data-en="Real experiences from real learners" data-te="నిజమైన అభ్యాసకుల నుండి నిజమైన అనుభవాలు">Real experiences from real learners</p>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p data-en="Excellent training and good explanation by Ganesh sir. Got confidence to drive and training in traffic. Highly recommended!" data-te="గణేష్ సర్ ద్వారా అద్భుత శిక్షణ మరియు మంచి వివరణ. ట్రాఫిక్‌లో నమ్మకంతో డ్రైవ్ చేయగలిగా.">Excellent training and good explanation by Ganesh sir. Got confidence to drive and training in traffic. Highly recommended!</p>
+        <strong data-en="— Phaniraj" data-te="— ఫణిరాజ్">— Phaniraj</strong>
+      </div>
+      <div class="testimonial">
+        <p data-en="Very good teaching method. Ganesh sir explains everything with patience. Even beginners feel comfortable here." data-te="చాలా మంచి బోధనా విధానం. గణేష్ సర్ ప్రతిదీ సహనంగా వివరించారు. మొదటిసారిగా వచ్చినవారూ సౌకర్యంగా ఉన్నారు.">Very good teaching method. Ganesh sir explains everything with patience. Even beginners feel comfortable here.</p>
+        <strong data-en="— Naziya" data-te="— నజియా">— Naziya</strong>
+      </div>
+      <div class="testimonial">
+        <p data-en="Very professional instructor. I didn't know basics but he made me drive confidently in traffic within days!" data-te="చాలా ప్రొఫెషనల్ శిక్షకుడు. నాకు ప్రాథమికతలు తెలియకపోయినా, అతను నన్ను కొన్ని రోజుల్లో ట్రాఫిక్‌లో నమ్మకంతో డ్రైవ్ చేయగలిగేలా చేశాడు!">Very professional instructor. I didn't know basics but he made me drive confidently in traffic within days!</p>
+        <strong data-en="— Sri Lakshmi" data-te="— శ్రీ లక్ష్మి">— Sri Lakshmi</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <h2 data-en="Get in Touch" data-te="సంప్రదించండి">Get in Touch</h2>
+    <p class="section-subtitle" data-en="Ready to start your driving journey?" data-te="మీ డ్రైవింగ్ ప్రయాణం ప్రారంభించడానికి సిద్ధమా?">Ready to start your driving journey?</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <strong data-en="Call Us / WhatsApp" data-te="కాల్ చేయండి / వాట్సాప్">Call Us / WhatsApp</strong>
+        <a href="tel:+919494331119" data-en="+91 9494331119" data-te="+91 9494331119">+91 9494331119</a>
+        <a href="tel:+919440754257" data-en="+91 9440754257" data-te="+91 9440754257">+91 9440754257</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <strong data-en="Visit Us" data-te="సందర్శించండి">Visit Us</strong>
+        <p data-en="Beside Apollo Pharmacy<br>Opposite Godrej Interio<br>Dasannapet, Vizianagaram" data-te="అపోలో ఫార్మసీ పక్కన<br>గోడ్రెజ్ ఇంటీరియో ఎదురుగా<br>దాసన్నపేట, విజయనగరం">Beside Apollo Pharmacy<br>Opposite Godrej Interio<br>Dasannapet, Vizianagaram</p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⏰</div>
+        <strong data-en="Open Hours" data-te="ఓపెన్ సమయం">Open Hours</strong>
+        <p data-en="Mon - Sat: 6:00 AM - 6:00 PM<br><span style='color:#dc2626;'>Closed Sundays</span>" data-te="సోమ - శని: 6:00 AM - 6:00 PM<br><span style='color:#dc2626;'>ఆదివారాలు సెలవు</span>">Mon - Sat: 6:00 AM - 6:00 PM<br><span style="color:#dc2626;">Closed Sundays</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="section">
+    <h2 data-en="📚 Study Resources" data-te="📚 అధ్యయన వనరులు">📚 Study Resources</h2>
+    <p class="section-subtitle" data-en="Prepare for your learner's license test" data-te="లెర్నర్ లైసెన్స్ పరీక్షకు సిద్ధమవ్వండి">Prepare for your learner's license test</p>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-card-icon">📝</div>
+        <a href="https://www.aptransport.org/html/llr-question-bank.html" target="_blank" rel="noopener" data-en="LLR Question Bank" data-te="LLR ప్రశ్న బ్యాంక్">LLR Question Bank</a>
+        <p data-en="Official questions for license test" data-te="లైసెన్స్ పరీక్ష కోసం అధికారిక ప్రశ్నలు">Official questions for license test</p>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-icon">🎯</div>
+        <a href="http://m.driving-tests.in/" target="_blank" rel="noopener" data-en="Practice Mock Tests" data-te="మాక్ టెస్టులు ప్రాక్టీస్ చేయండి">Practice Mock Tests</a>
+        <p data-en="Test your knowledge before exam" data-te="పరీక్షకు ముందు జ్ఞానం పరీక్షించండి">Test your knowledge before exam</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p data-en="© 2025 New Sri Raja Driving School, Vizianagaram" data-te="© 2025 న్యూ శ్రీ రాజా డ్రైవింగ్ స్కూల్, విజయనగరం">© 2025 New Sri Raja Driving School, Vizianagaram</p>
+    <p data-en="Driving Excellence Since 1995 | All Rights Reserved" data-te="2000 నుంచి భోధన నైపుణ్యం  | అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి">Driving Instruction Excellence Since 2000 | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Show popup on first load
+    window.addEventListener('load', function() {
+      const savedLang = localStorage.getItem('dsLanguage');
+      if (!savedLang) {
+        document.getElementById('languagePopup').style.display = 'flex';
+      } else {
+        document.getElementById('languagePopup').style.display = 'none';
+        applyLanguage(savedLang);
+      }
+    });
+
+    function setLanguage(lang) {
+      localStorage.setItem('dsLanguage', lang);
+      document.getElementById('languagePopup').style.display = 'none';
+      applyLanguage(lang);
+    }
+
+    function skipPopup() {
+      const lang = 'en';
+      localStorage.setItem('dsLanguage', lang);
+      document.getElementById('languagePopup').style.display = 'none';
+      applyLanguage(lang);
+    }
+
+    function applyLanguage(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const attr = el.getAttribute('data-' + lang);
+        if (attr !== null) {
+          if (['p', 'div', 'td', 'th', 'a', 'span', 'h1', 'h2', 'h3', 'li', 'strong'].includes(el.tagName.toLowerCase())) {
+            el.innerHTML = attr;
+          } else {
+            el.textContent = attr;
+          }
+        }
+      });
+      document.documentElement.lang = (lang === 'te') ? 'te' : 'en';
+    }
+  </script>
+
+</body>
+</html>
+
