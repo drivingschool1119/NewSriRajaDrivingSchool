@@ -627,7 +627,7 @@
       }
       
       header h1 { 
-        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        font-size: clamp(2rem, 8vw, 3rem); /* ← FIXED: Larger & less cramped */
         margin-bottom: 15px;
       }
       
@@ -639,11 +639,16 @@
       .cta-buttons {
         gap: 10px;
         margin-bottom: 20px;
+        flex-direction: column; /* ← Stack buttons */
+        align-items: center;
       }
       
       .btn { 
-        padding: 10px 16px; 
-        font-size: 13px;
+        padding: 11px 20px; /* ← Smaller padding */
+        font-size: 14px; /* ← Smaller font */
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
       }
       
       .alert-banner {
@@ -813,8 +818,8 @@
       }
       
       header h1 { 
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+        font-size: clamp(1.75rem, 9vw, 2.25rem); /* ← Even better scaling */
+        margin-bottom: 12px;
       }
       
       header p {
@@ -829,9 +834,10 @@
       }
       
       .btn { 
-        width: 100%;
-        padding: 12px 16px;
+        padding: 10px 16px; /* ← Slightly tighter */
         font-size: 13px;
+        width: 100%;
+        max-width: 280px;
       }
       
       .alert-banner {
@@ -1003,8 +1009,6 @@
     </div>
   </div>
 
-
-
   <!-- Hero -->
   <header>
     <div class="hero-bg"></div>
@@ -1066,7 +1070,7 @@
         <span class="feature-icon">👨‍🏫</span>
         <h3 data-en="Expert Instructor" data-te="నైపుణ్య శిక్షకుడు">Expert Instructor</h3>
         <p data-en="Learn from Ganesh sir with 30+ years of professional driving instruction experience"
-           data-te="గణేష్ సర్ నుండి 30+ సంవత్సరాల పేషাదారీ డ్రైవింగ్ బోధన అనుభవంతో నేర్చుకోండి">Learn from Ganesh sir with 30+ years of professional driving instruction experience</p>
+           data-te="గణేష్ సర్ నుండి 30+ సంవత్సరాల పేషాదారీ డ్రైవింగ్ బోధన అనుభవంతో నేర్చుకోండి">Learn from Ganesh sir with 30+ years of professional driving instruction experience</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🛣️</span>
@@ -1090,7 +1094,7 @@
         <span class="feature-icon">🎯</span>
         <h3 data-en="Patient Teaching" data-te="ధైర్యవంతమైన బోధన">Patient Teaching</h3>
         <p data-en="Clear explanations with patience - perfect for absolute beginners"
-           data-te="ధైర్యంతో స్పష్టమైన వివరణలు - పూర్తిగా నতুన వారికి">Clear explanations with patience - perfect for absolute beginners</p>
+           data-te="ధైర్యంతో స్పష్టమైన వివరణలు - పూర్తిగా నతున వారికి">Clear explanations with patience - perfect for absolute beginners</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">✅</span>
@@ -1270,4 +1274,3 @@
 
 </body>
 </html>
-
